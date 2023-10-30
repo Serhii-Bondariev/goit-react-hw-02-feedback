@@ -1,4 +1,26 @@
 import React, { Component } from 'react';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+
+const Div = styled('div')(({ theme }) => ({
+  ...theme.typography.button,
+
+  backgroundColor: theme.palette.background.paper,
+  border: '2px solid #194df9',
+  boxShadow: theme.shadows[5],
+  fontSize: '16px',
+  borderRadius: '10px',
+  fontWeight: 'bold',
+
+  color: theme.palette.text.primary,
+  padding: theme.spacing(2),
+  textAlign: 'center',
+
+  [theme.breakpoints.up('sm')]: {
+    padding: theme.spacing(12),
+  },
+}));
 
 export class Feedback extends Component {
   state = {
@@ -29,17 +51,23 @@ export class Feedback extends Component {
     const positivePercentage = this.countPositiveFeedbackPercentage();
 
     return (
-      <div>
+      <Div>
         <h1>Please leave feedback</h1>
-        <button name="good" onClick={this.handleFeedback}>
-          Good
-        </button>
-        <button name="neutral" onClick={this.handleFeedback}>
-          Neutral
-        </button>
-        <button name="bad" onClick={this.handleFeedback}>
-          Bad
-        </button>
+        <ButtonGroup aria-label="outlined primary button group">
+          <Button variant="contained" name="good" onClick={this.handleFeedback}>
+            Good
+          </Button>
+          <Button
+            variant="contained"
+            name="neutral"
+            onClick={this.handleFeedback}
+          >
+            Neutral
+          </Button>
+          <Button variant="contained" name="bad" onClick={this.handleFeedback}>
+            Bad
+          </Button>
+        </ButtonGroup>
 
         <h2>Statistics</h2>
         {total ? (
@@ -53,7 +81,7 @@ export class Feedback extends Component {
         ) : (
           <p>No feedback given</p>
         )}
-      </div>
+      </Div>
     );
   }
 }
