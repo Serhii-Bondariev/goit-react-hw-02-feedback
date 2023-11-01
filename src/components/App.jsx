@@ -1,9 +1,9 @@
-// App.jsx
 import React, { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import Section from './Section/Section';
 import { Statistics } from './Statistics/Statistics';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
+import { Notification } from './Notification/Notification';
 
 export class App extends Component {
   state = {
@@ -41,14 +41,18 @@ export class App extends Component {
           />
         </Section>
 
-        <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={total}
-            positivePercentage={positivePercentage}
-          />
+        <Section children title="Statistics">
+          {total === 0 ? (
+            <Notification message="There is no feedback" />
+          ) : (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={positivePercentage}
+            />
+          )}
         </Section>
       </ScopedCssBaseline>
     );

@@ -1,4 +1,3 @@
-// Section/Section.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@mui/material/Paper';
